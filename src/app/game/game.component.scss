@@ -20,3 +20,17 @@
         width: 128px;
     }
 }
+
+.top-card {
+    cursor: pointer;
+    transition: all 125ms ease-in-out; // 225
+
+    &:hover {
+        transform: scale(1.1) translatey(-10px)// zoom in, zoom out in y direction
+    }
+}
+
+.pick-card {
+    transition: all 125ms ease-in-out; // 225
+    transform: scale(1.5) !important; // zoom in, zoom out in y direction // hover (please refer: top-card) is stronger
+}
