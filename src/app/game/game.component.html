@@ -1,1 +1,10 @@
-<p>game works!</p>
+<div class="field">
+
+    <div class="card-stack">
+        <!-- let card of [1,2,3,4,5]: 5 elements -> 5 cards. Important: Only use numbers --> 
+        <!-- Neues style property direkt in das Element einfügen.  -->
+        <!-- right.px: pixel -->
+        <img [ngStyle]="{'right.px': i * 5}" *ngFor="let card of [0, 1, 2, 3, 4]; let i = index;" src="/assets/img/cards/card_cover.png">
+    </div>
+
+</div>

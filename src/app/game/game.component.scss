@@ -1,0 +1,22 @@
+.field {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    //background-color: rgb(175, 6, 6);
+    background-image: url("/assets/img/background2.jpg");
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-stack {
+    position: relative;
+
+    // img in card-stack
+    img {
+        position: absolute;
+        width: 128px;
+    }
+}
