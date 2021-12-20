@@ -30,6 +30,11 @@
     }
 }
 
+.played-card {
+    right: 25px;
+    transform: scale(1.3) translateX(150px) translateY(-180px) rotate(-10deg); // zoom in, zoom out in X and Y direction
+}
+
 .pick-card {
     animation: pick-card-animation 1s ease-in-out;
     // Transform of 100% (@keyframes), since the map should stay in place after the animation.
