@@ -1,6 +1,6 @@
 export class Game {
     // XY: abc (Datentyp)
-    public players: string[] = []; // Spieler
+    public players: string[] = ['Hans', 'Peter', 'Fred']; // Spieler
     public stack: string[] = []; // ungespielten Karten
     public playedCards: string[] = []; // gespielte Karten
     public currentPlayer: number = 0; 
