@@ -11,7 +11,7 @@
         margin-left: 16px;
     }
 
-    background-color: yellow;
+    background-color: rgb(100, 100, 100, 0.8);
     font-size: 18px;
     img {
         width: 75px;
@@ -21,4 +21,8 @@
         border-top-left-radius: 50px;
         border-bottom-left-radius: 50px;
     }
+}
+
+.player-active {
+    background-color: yellow !important;
 }
