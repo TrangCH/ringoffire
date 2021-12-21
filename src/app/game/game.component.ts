@@ -46,8 +46,8 @@ export class GameComponent implements OnInit {
     //}
     );
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe((name: string) => { // result
+      this.game.players.push(name);
       //this.animal = result; // Möglichkeit, Daten zurück zu bekommen.
     });
   }
