@@ -13,6 +13,7 @@ export class GameComponent implements OnInit {
   currentCard: string = '';
   game: Game; // Typ Game
   noCards = false;
+  limitPlayers = true;
 
   constructor(public dialog: MatDialog) { }
 
@@ -42,6 +43,12 @@ export class GameComponent implements OnInit {
     } 
   }
 
+  limitTheNumberOfPlayers() {
+    if(this.game.players.length > 5) {
+      this.limitPlayers  = false;
+    }
+  }
+
   openDialog(): void {                // Hier: Klasse einfügen DialogAddPlayerComponent
     const dialogRef = this.dialog.open(DialogAddPlayerComponent//, { Den Rest brauchen wir erstmal nicht.
       //width: '250px',
@@ -56,5 +63,6 @@ export class GameComponent implements OnInit {
         //this.animal = result; // Möglichkeit, Daten zurück zu bekommen.
       }
     });
+    this.limitTheNumberOfPlayers();
   }
 }
