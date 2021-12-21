@@ -1,11 +1,13 @@
 <mat-card>
     <!-- Variable title aus ts.Datei ngOnChanges() -->
-    <mat-card-title> {{ title }} </mat-card-title>
+    <!-- If-Else-Abfrage Schnellform -->
+    <!-- Wenn die Variable card existiert, dann wird der Title angezeigt, ansonsten steht das was in der Klammer ist. -->
+    <mat-card-title> {{ card ? title : 'Please pick a card' }} </mat-card-title>
 
 
 
 
     <!-- Variable description aus ts.Datei ngOnChanges() -->
-    <mat-card-content> {{ description }} </mat-card-content>
+    <mat-card-content> {{ card ? description : 'Please click on the card stack to select the next card.' }} </mat-card-content>
 
 </mat-card>

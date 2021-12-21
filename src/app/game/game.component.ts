@@ -45,12 +45,15 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent//, { Den Rest brauchen wir erstmal nicht.
       //width: '250px',
       //data: {name: this.name, animal: this.animal}, // Beispiel, um unserer Komponente Daten hinzu zu fügen.
-    //}
+      //}
     );
 
     dialogRef.afterClosed().subscribe((name: string) => { // result
-      this.game.players.push(name);
-      //this.animal = result; // Möglichkeit, Daten zurück zu bekommen.
+      // Existiert die Variable name und wenn ja, dann prüfe, ob die Länge des Namens echt größer 0 ist.
+      if (name && name.length > 0) {
+        this.game.players.push(name);
+        //this.animal = result; // Möglichkeit, Daten zurück zu bekommen.
+      }
     });
   }
 }

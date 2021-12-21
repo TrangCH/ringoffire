@@ -13,5 +13,6 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+    <!-- Wenn die Länge des Eingabefeldes "Name" 0 ist, dann ist der Button nicht klickbar. -->
+    <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
 </div>
