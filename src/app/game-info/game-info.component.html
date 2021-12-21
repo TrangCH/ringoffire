@@ -1,10 +1,11 @@
 <mat-card>
-    <mat-card-title>Titel</mat-card-title>
+    <!-- Variable title aus ts.Datei ngOnChanges() -->
+    <mat-card-title> {{ title }} </mat-card-title>
 
 
 
 
-
-    <mat-card-content>Content / Description</mat-card-content>
+    <!-- Variable description aus ts.Datei ngOnChanges() -->
+    <mat-card-content> {{ description }} </mat-card-content>
 
 </mat-card>
