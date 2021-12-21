@@ -12,6 +12,7 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = '';
   game: Game; // Typ Game
+  noCards = false;
 
   constructor(public dialog: MatDialog) { }
 
@@ -25,7 +26,7 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.pickCardAnimation) {
+    if ((!this.pickCardAnimation) && (this.game.stack.length > 0) && (this.game.players.length > 0)) {
       // stack.pop(): pop() nimmt den letzten Wert aus dem Array und gibt es zurück und löscht diese auch.
       this.currentCard = this.game.stack.pop();
       this.pickCardAnimation = true;
@@ -38,7 +39,7 @@ export class GameComponent implements OnInit {
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
       }, 1000);
-    }
+    } 
   }
 
   openDialog(): void {                // Hier: Klasse einfügen DialogAddPlayerComponent
