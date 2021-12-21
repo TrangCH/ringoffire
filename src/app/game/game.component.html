@@ -1,5 +1,5 @@
 <!-- Dynamize style=top, [name] ist eine input-Variable, d.h. Eigenschaften in player.component.ts anpassen!!! -->
-<app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 100 + (i * 120)}" [name]="player"
+<app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 100 + (i * 85)}" [name]="player"
     class="player-position"></app-player>
 
 <div class="field">
@@ -25,7 +25,7 @@
 </div>
 
 
-<button mat-fab color="primary" class="button-add">
+<button mat-fab color="primary" class="button-add" (click)="openDialog()"> <!-- click-Attribut -->
     <!-- Material item called "add" -->
     <mat-icon>add</mat-icon>
 </button>

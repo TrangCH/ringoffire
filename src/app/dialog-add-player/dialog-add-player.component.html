@@ -1,0 +1,17 @@
+<!-- Das Gute ist, man kann es Schritt für Schritt übernehmen und anpassen. -->
+
+<h1 mat-dialog-title>Add new player</h1>
+<div mat-dialog-content>
+    <p>Please enter the name of a player.</p>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <!-- Mit ngModel hat man die Möglichkeit, ein Variable an ein input-Feld zu binden. -->
+        <!-- Alles, was sich im input-Feld ändert beeinflusst auch die Variable name. Und anders herum. -->
+        <!-- Variable name muss noch definiert werden. OK Erledigt. -->
+        <input matInput [(ngModel)]="name"> 
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+</div>
