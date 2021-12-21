@@ -12,8 +12,9 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = '';
   game: Game; // Typ Game
+  enoughCards = true;
   noCards = false;
-  limitPlayers = true;
+  freePlacesForParticipants = true;
 
   constructor(public dialog: MatDialog) { }
 
@@ -40,16 +41,25 @@ export class GameComponent implements OnInit {
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
       }, 1000);
+      this.verificationOfTheNumberOfCards();
     } 
   }
 
   limitTheNumberOfPlayers() {
-    if(this.game.players.length > 5) {
-      this.limitPlayers  = false;
+    if(this.game.players.length > 2) {
+      this.freePlacesForParticipants  = false;
+    }
+  }
+
+  verificationOfTheNumberOfCards() {
+    if(this.game.stack.length = 0) {
+      this.enoughCards = false;
+      this.noCards = true;
     }
   }
 
   openDialog(): void {                // Hier: Klasse einfügen DialogAddPlayerComponent
+    this.limitTheNumberOfPlayers();
     const dialogRef = this.dialog.open(DialogAddPlayerComponent//, { Den Rest brauchen wir erstmal nicht.
       //width: '250px',
       //data: {name: this.name, animal: this.animal}, // Beispiel, um unserer Komponente Daten hinzu zu fügen.
@@ -63,6 +73,6 @@ export class GameComponent implements OnInit {
         //this.animal = result; // Möglichkeit, Daten zurück zu bekommen.
       }
     });
-    this.limitTheNumberOfPlayers();
+    
   }
 }

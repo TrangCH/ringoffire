@@ -1,6 +1,6 @@
 <app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
 
-<button mat-fab color="primary" class="button-add" *ngIf="limitPlayers" (click)="openDialog()">
+<button mat-fab color="primary" class="button-add" *ngIf="freePlacesForParticipants" (click)="openDialog()">
     <!-- click-Attribut -->
     <!-- Material item called "add" -->
     <mat-icon>add</mat-icon>
@@ -12,8 +12,8 @@
 <!-- Dynamize style=top, [name] ist eine input-Variable, d.h. Eigenschaften in player.component.ts anpassen!!! -->
 
 <div class="">
-<app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 128 + (i * 85)}"
-    [playerActive]="i == game.currentPlayer" [name]="player" class="player-position"></app-player>
+    <app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 128 + (i * 85)}"
+        [playerActive]="i == game.currentPlayer" [name]="player" class="player-position"></app-player>
 </div>
 
 <div class="field">
@@ -23,17 +23,16 @@
         <!-- right.px: pixel -->
 
         <!-- Card stack -->
-        <img [ngStyle]="{'right.px': i * 5}" *ngFor="let card of [0, 1, 2, 3]; let i = index;"
-            src="assets/img/cards/card_cover.png">
+        <img [ngStyle]="{'right.px': i * 5}" style="top: -50px" *ngFor="let card of [0, 1, 2, 3]; let i = index;"
+            src="assets/img/cards/card_cover.png"> <!-- [class.displayNone]="noCards"-->
         <!-- Supreme card, 5th card * 5px = 25px -->
-        <img (click)="takeCard()" class="top-card" style="right: 25px" src="assets/img/cards/card_cover.png"
-            [class.displayNone]="noCards">
+        <img (click)="takeCard()" class="top-card" style="right: 25px; top: -50px" src="assets/img/cards/card_cover.png"> <!-- *ngIf="enoughCards"-->
 
         <!-- Stack for played cards -->
         <img *ngFor="let card of game.playedCards" class="played-card" src="assets/img/cards/{{ card }}.png">
 
         <!-- Current card (Animation) -->
-        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right: 25px"
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right: 25px; top: -50px"
             src="assets/img/cards/{{ currentCard }}.png">
     </div>
 
