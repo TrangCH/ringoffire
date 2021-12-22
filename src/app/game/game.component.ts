@@ -52,7 +52,7 @@ export class GameComponent implements OnInit {
   }
 
   verificationOfTheNumberOfCards() {
-    if(this.game.stack.length = 0) {
+    if(this.game.stack.length == 0) {
       this.enoughCards = false;
       this.noCards = true;
     }

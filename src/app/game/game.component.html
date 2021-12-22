@@ -22,7 +22,7 @@
         <!-- Neues style property direkt in das Element einfügen.  -->
         <!-- right.px: pixel -->
 
-        <!-- Card stack -->
+        <!-- Card stack, bei Angular nicht ngIf und ngFor zusammen einem element geben ! -->
         <div *ngIf="game.stack.length > 0">
             <img [ngStyle]="{'right.px': i * 5}" style="top: -50px" *ngFor="let card of [0, 1, 2, 3]; let i = index;"
                 src="assets/img/cards/card_cover.png"> <!-- [class.displayNone]="noCards"-->
