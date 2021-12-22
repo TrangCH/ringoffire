@@ -23,10 +23,14 @@
         <!-- right.px: pixel -->
 
         <!-- Card stack -->
-        <img [ngStyle]="{'right.px': i * 5}" style="top: -50px" *ngFor="let card of [0, 1, 2, 3]; let i = index;"
-            src="assets/img/cards/card_cover.png"> <!-- [class.displayNone]="noCards"-->
+        <div *ngIf="game.stack.length > 0">
+            <img [ngStyle]="{'right.px': i * 5}" style="top: -50px" *ngFor="let card of [0, 1, 2, 3]; let i = index;"
+                src="assets/img/cards/card_cover.png"> <!-- [class.displayNone]="noCards"-->
+        </div>
+
         <!-- Supreme card, 5th card * 5px = 25px -->
-        <img (click)="takeCard()" class="top-card" style="right: 25px; top: -50px" src="assets/img/cards/card_cover.png"> <!-- *ngIf="enoughCards"-->
+        <img *ngIf="game.stack.length > 0" (click)="takeCard()" class="top-card" style="right: 25px; top: -50px"
+            src="assets/img/cards/card_cover.png"> <!-- *ngIf="enoughCards"-->
 
         <!-- Stack for played cards -->
         <img *ngFor="let card of game.playedCards" class="played-card" src="assets/img/cards/{{ card }}.png">
