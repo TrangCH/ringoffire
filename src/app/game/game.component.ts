@@ -14,6 +14,7 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = '';
   game: Game; // Typ Game
+  gameId: string;
   enoughCards = true;
   noCards = false;
   freePlacesForParticipants = true;
@@ -24,11 +25,12 @@ export class GameComponent implements OnInit {
     this.newGame();
     this.route.params.subscribe((params) => {
       console.log(params['id']);
+      this.gameId = params['id'];
 
       this
       .firestore
       .collection('games') // items = games 
-      .doc(params['id'])
+      .doc(this.gameId)
       .valueChanges() // valueChanges() abonnieren mit:
       .subscribe((game: any) =>  { // game kann alles sein und damit auch ein valides JSON. Unsere IDE ist dann zufrieden. 
         // Es unterliegt unserer Obhut, dass game das JSON auch wirklich diese Teile hat.
@@ -96,8 +98,17 @@ export class GameComponent implements OnInit {
       if (name && name.length > 0) {
         this.game.players.push(name);
         //this.animal = result; // Möglichkeit, Daten zurück zu bekommen.
+        this.saveGame();
       }
     });
-
   }
+
+  saveGame() {
+    this
+    .firestore
+    .collection('games') // items = games 
+    .doc(this.gameId)
+    .update(this.game.toJSON());
+  }
+
 }
