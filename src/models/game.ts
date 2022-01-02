@@ -15,6 +15,21 @@ export class Game {
 
         shuffle(this.stack);
     }
+
+    /**
+     * 
+     * @returns Möglichkeit, unser Game umzuwandeln in ein JSON in Firebase
+     */
+    public toJSON() {
+        return {
+            // Anstatt statische Daten z.B. 'Andreas', geben wir uns eine Variable zurück.
+            players: this.players, // Feld player
+            stack: this.stack,
+            playedCards: this.playedCards,
+            currentPlayer: this.currentPlayer
+        };
+    }
+
 }
 
 

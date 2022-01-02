@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -16,15 +18,38 @@ export class GameComponent implements OnInit {
   noCards = false;
   freePlacesForParticipants = true;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.newGame();
+    this.route.params.subscribe((params) => {
+      console.log(params['id']);
+
+      this
+      .firestore
+      .collection('games') // items = games 
+      .doc(params['id'])
+      .valueChanges() // valueChanges() abonnieren mit:
+      .subscribe((game: any) =>  { // game kann alles sein und damit auch ein valides JSON. Unsere IDE ist dann zufrieden. 
+        // Es unterliegt unserer Obhut, dass game das JSON auch wirklich diese Teile hat.
+        console.log('Game update', game); // Jedes Mal, wenn in der Datenbank was verändert wird, wird diese Änderung mir ausgeloggt.
+        // Aktualisieren. Ich update alles in unserem Game.
+        this.game.currentPlayer = game.currentPlayer;
+        this.game.playedCards = game.playedCards;
+        this.game.players = game.players;
+        this.game.stack = game.stack;
+      });
+      
+    });
+    
   }
 
-  newGame() {
+  newGame() { // Es wird ein neues Game Objekt erstellt.
     this.game = new Game(); // Variable game bekommt ein neues Objekt erstellt, von dem was wir gerade angelegt haben.
     console.log(this.game);
+    // this.firestore // Zugriff auf firestore
+    //   .collection('games')  // Zugrifft auf die Sammlung 'games'
+    //   .add(this.game.toJSON()); // JSON hinzugefügt {'Hallo': 'Welt'} // Unser game Objekt wird in ein JSON umgewandelt.
   }
 
   takeCard() {
@@ -42,17 +67,17 @@ export class GameComponent implements OnInit {
         this.pickCardAnimation = false;
       }, 1000);
       this.verificationOfTheNumberOfCards();
-    } 
+    }
   }
 
   limitTheNumberOfPlayers() {
-    if(this.game.players.length > 2) {
-      this.freePlacesForParticipants  = false;
+    if (this.game.players.length > 2) {
+      this.freePlacesForParticipants = false;
     }
   }
 
   verificationOfTheNumberOfCards() {
-    if(this.game.stack.length == 0) {
+    if (this.game.stack.length == 0) {
       this.enoughCards = false;
       this.noCards = true;
     }
@@ -73,6 +98,6 @@ export class GameComponent implements OnInit {
         //this.animal = result; // Möglichkeit, Daten zurück zu bekommen.
       }
     });
-    
+
   }
 }
