@@ -64,10 +64,12 @@ export class GameComponent implements OnInit {
       this.game.pickCardAnimation = true;
       console.log('New card: ' + this.game.currentCard);
       console.log('Game is ', this.game);
-      this.saveGame(); // Spiel noch einmal speichern.
 
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+      
+      this.saveGame(); // Spiel noch einmal speichern.
+
       setTimeout(() => {
         this.game.playedCards.push(this.game.currentCard);
         this.game.pickCardAnimation = false;
