@@ -4,6 +4,8 @@ export class Game {
     public stack: string[] = []; // ungespielten Karten
     public playedCards: string[] = []; // gespielte Karten
     public currentPlayer: number = 0; 
+    public pickCardAnimation = false; // in public toJSON() einfügen   
+    public currentCard: string = '';  // in public toJSON() einfügen 
 
     constructor() {
         for (let i = 1; i < 14; i++) {
@@ -26,7 +28,9 @@ export class Game {
             players: this.players, // Feld player
             stack: this.stack,
             playedCards: this.playedCards,
-            currentPlayer: this.currentPlayer
+            currentPlayer: this.currentPlayer,
+            pickCardAnimation: this.pickCardAnimation,
+            currentCard: this.currentCard
         };
     }
 

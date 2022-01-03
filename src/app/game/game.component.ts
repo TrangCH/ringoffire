@@ -11,8 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  pickCardAnimation = false;
-  currentCard: string = '';
+  // Hinweis: Alle Variablen müssen synchronisiert sein, damit man die auch in der anderen Instanz anzeigen können.
+  //pickCardAnimation = false; => game.ts
+  //currentCard: string = '';  => game.ts
   game: Game; // Typ Game
   gameId: string;
   enoughCards = true;
@@ -40,6 +41,8 @@ export class GameComponent implements OnInit {
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
         this.game.stack = game.stack;
+        this.game.pickCardAnimation = game.pickCardAnimation;
+        this.game.currentCard = game.currentCard;
       });
       
     });
@@ -55,18 +58,20 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if ((!this.pickCardAnimation) && (this.game.stack.length > 0) && (this.game.players.length > 0)) {
+    if ((!this.game.pickCardAnimation) && (this.game.stack.length > 0) && (this.game.players.length > 0)) {
       // stack.pop(): pop() nimmt den letzten Wert aus dem Array und gibt es zurück und löscht diese auch.
-      this.currentCard = this.game.stack.pop();
-      this.pickCardAnimation = true;
-      console.log('New card: ' + this.currentCard);
+      this.game.currentCard = this.game.stack.pop();
+      this.game.pickCardAnimation = true;
+      console.log('New card: ' + this.game.currentCard);
       console.log('Game is ', this.game);
+      this.saveGame(); // Spiel noch einmal speichern.
 
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
       setTimeout(() => {
-        this.game.playedCards.push(this.currentCard);
-        this.pickCardAnimation = false;
+        this.game.playedCards.push(this.game.currentCard);
+        this.game.pickCardAnimation = false;
+        this.saveGame(); // Spiel noch einmal speichern.
       }, 1000);
       this.verificationOfTheNumberOfCards();
     }
