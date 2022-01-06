@@ -1,6 +1,7 @@
 export class Game {
     // XY: abc (Datentyp)
     public players: string[] = []; // Spieler
+    public player_images: string[] = []; // Spieler
     public stack: string[] = []; // ungespielten Karten
     public playedCards: string[] = []; // gespielte Karten
     public currentPlayer: number = 0; 
@@ -8,7 +9,7 @@ export class Game {
     public currentCard: string = '';  // in public toJSON() einfügen 
 
     constructor() {
-        for (let i = 1; i < 14; i++) {
+        for (let i = 1; i < 14; i++) { // 14 Karten insgesamt
             this.stack.push('spade_' + i);
             this.stack.push('hearts_' + i);
             this.stack.push('clubs_' + i);
@@ -26,6 +27,7 @@ export class Game {
         return {
             // Anstatt statische Daten z.B. 'Andreas', geben wir uns eine Variable zurück.
             players: this.players, // Feld player
+            player_images: this.player_images, // Feld player
             stack: this.stack,
             playedCards: this.playedCards,
             currentPlayer: this.currentPlayer,

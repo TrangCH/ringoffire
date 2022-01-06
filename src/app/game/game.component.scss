@@ -65,8 +65,8 @@
 
 .button-add {
     position: absolute;
-    right: 64px;
-    top: 64px;
+    right: 32px;
+    bottom: 50px;
 }
 
 .pin-bottom {
@@ -101,3 +101,10 @@
     }
 }
 
+app-player, app-player-mobile {
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(1.2);
+    }
+}

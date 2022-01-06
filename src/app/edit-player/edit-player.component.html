@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Add new player</h1>
+
+<img class="profile-picture" [mat-dialog-close]="picture" *ngFor="let picture of allProfilePictures" src="./assets/img/profile/{{ picture }}">
+
+<div mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()">Close</button>
+    <!-- Wenn die Länge des Eingabefeldes "Name" 0 ist, dann ist der Button nicht klickbar. -->
+    <button mat-button [mat-dialog-close]="'DELETE'" cdkFocusInitial>Delete player</button> <!--color="warn"-->
+</div>

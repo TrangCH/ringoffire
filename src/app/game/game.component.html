@@ -1,6 +1,7 @@
 <app-game-info [card]="game.currentCard" class="pin-bottom"></app-game-info>
 
-<button mat-fab color="primary" class="button-add" *ngIf="freePlacesForParticipants" (click)="openDialog()">
+<button mat-fab color="primary" class="button-add" (click)="openDialog()">
+    <!--*ngIf="freePlacesForParticipants"-->
     <!-- click-Attribut -->
     <!-- Material item called "add" -->
     <mat-icon>add</mat-icon>
@@ -12,15 +13,21 @@
 <!-- Dynamize style=top, [name] ist eine input-Variable, d.h. Eigenschaften in player.component.ts anpassen!!! -->
 
 <div class="">
-    <app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 128 + (i * 85)}"
-        [playerActive]="i == game.currentPlayer" [name]="player" class="player-position hide-mobile"></app-player>
+    <app-player (click)="editPlayer(i)" *ngFor="let player of game.players; let i = index;"
+        [ngStyle]="{'top.px': 24 + (i * 60)}" [playerActive]="i == game.currentPlayer" [image]="game.player_images[i]"
+        [name]="player" class="player-position hide-mobile"></app-player>
 </div>
-<div class="scroll-container-mobile hide-desktop">
-    <app-player-mobile *ngFor="let player of game.players; let i = index;"
-        [playerActive]="i == game.currentPlayer" [name]="player"></app-player-mobile>
+<div class="scroll-container-mobile">
+    <app-player-mobile class="hide-desktop" (click)="editPlayer(i)" *ngFor="let player of game.players; let i = index;"
+        [playerActive]="i == game.currentPlayer" [image]="game.player_images[i]" [name]="player"></app-player-mobile>
 </div>
 
-<div class="field">
+<!--<div *ngIf="gameOver">
+    <img src="./assets/img/profile/player.png">
+</div>-->
+
+
+<div *ngIf="!gameOver" class="field">
     <div class="card-stack">
         <!-- let card of [1,2,3,4,5]: 5 elements -> 5 cards. Important: Only use numbers -->
         <!-- Neues style property direkt in das Element einfügen.  -->
