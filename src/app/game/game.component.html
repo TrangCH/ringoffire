@@ -26,7 +26,6 @@
     <img src="./assets/img/profile/player.png">
 </div>-->
 
-
 <div *ngIf="!gameOver" class="field">
     <div class="card-stack">
         <!-- let card of [1,2,3,4,5]: 5 elements -> 5 cards. Important: Only use numbers -->
@@ -52,3 +51,5 @@
     </div>
 
 </div>
+
+<img class="preloadImage" src="assets/img/cards/{{ game.stack[game.stack.length -1] }}.png">
