@@ -18,6 +18,16 @@
     img {
         position: absolute;
         width: 128px;
+
+        @media (max-width: 720px) {
+            width: 100px;
+        }
+    }
+}
+
+.stack {
+    @media (max-width: 720px) {
+        top: 0px !important;
     }
 }
 
@@ -28,17 +38,35 @@
     &:hover {
         transform: scale(1.1) translatey(-10px); // zoom in, zoom out in y direction
     }
+
+    @media (max-width: 720px) {
+        top: 0px !important;
+    }
 }
 
 .played-card {
     right: 25px;
     transform: scale(1.3) translateX(150px) translateY(-180px) rotate(-10deg); // zoom in, zoom out in X and Y direction
+
+    @media (max-width: 720px) {
+        top: 50px !important;
+        right: 50px !important;
+    }
+
+    @media (max-width: 400px) {
+        top: 70px !important;
+        right: 70px !important;
+    }
 }
 
 .pick-card {
     animation: pick-card-animation 1s ease-in-out;
     // Transform of 100% (@keyframes), since the map should stay in place after the animation.
     transform: scale(1.3) translateX(150px) translateY(-180px) rotate(-10deg); // zoom in, zoom out in X and Y direction
+
+    @media (max-width: 720px) {
+        top: 0px !important;
+    }
 }
 
 @keyframes pick-card-animation {

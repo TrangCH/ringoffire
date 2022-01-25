@@ -85,12 +85,6 @@ export class GameComponent implements OnInit {
     }
   }
 
-  // limitTheNumberOfPlayers() {
-  //   if (this.game.players.length > 2) {
-  //     this.freePlacesForParticipants = false;
-  //   }
-  // }
-
   verificationOfTheNumberOfCards() {
     if (this.game.stack.length == 0) {
       this.enoughCards = false;
