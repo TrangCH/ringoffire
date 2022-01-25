@@ -11,14 +11,14 @@ html, body {
     overflow: hidden;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 850px) {
     .hide-mobile {
         display: none;
     }
 }
 
 
-@media (min-width: 720px) {
+@media (min-width: 850px) {
     .hide-desktop {
         display: none;
     }
