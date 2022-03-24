@@ -13,6 +13,7 @@
 
 .card-stack {
     position: relative;
+    transform:rotate(-5deg);
 
     // img in card-stack
     img {
@@ -27,7 +28,7 @@
 
 .stack {
     @media (max-width: 720px) {
-        top: 0px !important;
+        top: -20px !important;
     }
 }
 
@@ -40,7 +41,7 @@
     }
 
     @media (max-width: 720px) {
-        top: 0px !important;
+        top: -20px !important;
     }
 }
 
